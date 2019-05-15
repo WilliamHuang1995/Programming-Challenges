@@ -1,4 +1,4 @@
-# Algorithm Questions
+# Programming Challenges
 
 This will be a collection of algorithm questions that I've solved ever.
 
