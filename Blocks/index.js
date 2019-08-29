@@ -1,11 +1,4 @@
-const { findBlocks } = require("./block");
-map = [
-  [1, 1, 0, 1, 0, 1, 0],
-  [1, 1, 0, 1, 0, 1, 0],
-  [1, 1, 0, 1, 0, 1, 0],
-  [1, 0, 0, 1, 1, 1, 0],
-  [1, 1, 0, 1, 0, 0, 1]
-];
+const { findBlocks, findBlocksByDraw } = require("./blocks");
 const CreateRandom2DArray = (rows, columns) => {
   var x = new Array(rows);
   for (var i = 0; i < rows; i++) {
@@ -18,8 +11,10 @@ const CreateRandom2DArray = (rows, columns) => {
   return x;
 };
 // var blocks = findBlocks(map);
-map2 = CreateRandom2DArray(10, 10);
-console.log(map2);
-var blocks2 = findBlocks(map2);
-// console.log(blocks);
-console.log(blocks2);
+const map = CreateRandom2DArray(10, 10);
+console.log(map);
+var blocks = findBlocks(map);
+var blocksByDraw = findBlocksByDraw(map);
+console.log(map);
+console.log(blocks);
+console.log(blocksByDraw);

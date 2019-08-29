@@ -7,7 +7,21 @@ module.exports = {
         if (map[i][j] == 1 && map2[i][j] == 0) {
           block += 1;
           // recursion here
-          recursion1(i, j, map2, map);
+          recursion(i, j, map2, map);
+        }
+      }
+    }
+    return block;
+  },
+  findBlocksByDraw: map => {
+    const clone = map;
+    let block = 0;
+    for (var i = 0; i < clone.length; i++) {
+      for (var j = 0; j < clone[0].length; j++) {
+        if (clone[i][j] == 1) {
+          block += 1;
+          // recursion here
+          draw(i, j, clone);
         }
       }
     }
@@ -15,7 +29,19 @@ module.exports = {
   }
 };
 
-const recursion1 = (i, j, map2, map) => {
+const draw = (i, j, map) => {
+  if (i < 0 || j < 0 || i == map.length || j == map[0].length) {
+    return;
+  }
+  if (map[i][j] == 1) {
+    map[i][j] = 2;
+    draw(i + 1, j, map);
+    draw(i - 1, j, map);
+    draw(i, j + 1, map);
+    draw(i, j - 1, map);
+  }
+};
+const recursion = (i, j, map2, map) => {
   //out of bounds
   if (i < 0 || j < 0 || i == map.length || j == map[0].length) {
     return;
@@ -23,16 +49,16 @@ const recursion1 = (i, j, map2, map) => {
   if (map[i][j] == 1) {
     map2[i][j] = "OK";
     if (i + 1 < map.length && map[i + 1][j] && !map2[i + 1][j]) {
-      recursion1(i + 1, j, map2, map);
+      recursion(i + 1, j, map2, map);
     }
     if (i - 1 >= 0 && map[i - 1][j] && !map2[i - 1][j]) {
-      recursion1(i - 1, j, map2, map);
+      recursion(i - 1, j, map2, map);
     }
     if (j + 1 < map[0].length && map[i][j + 1] && !map2[i][j + 1]) {
-      recursion1(i, j + 1, map2, map);
+      recursion(i, j + 1, map2, map);
     }
     if (j - 1 >= 0 && map[i][j - 1] && !map2[i][j - 1]) {
-      recursion1(i, j - 1, map2, map);
+      recursion(i, j - 1, map2, map);
     }
   }
 };
